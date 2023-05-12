@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  background-color: chartreuse;
   height: 100px;
   width: 100%;
 }
@@ -11,8 +10,12 @@
   align-items: center;
 }
 
-.menu {
+.menu ul {
   display: flex;
+  gap: 80px;
+  align-self: center;
+  padding-top: 40px;
+  align-content: end;
 }
 
 .menuItem {
@@ -29,7 +32,6 @@
 
 .footer {
   display: flex;
-  background-color: chartreuse;
   height: 100px;
   width: 100%;
 }

@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,15 +10,29 @@ export default function Home() {
         </div>
         <div className={styles.menu}>
           <ul>
-            <li className={styles.menuItem}>Home</li>
-            <li className={styles.menuItem}>How it works</li>
-            <li className={styles.menuItem}>Blog</li>
+            <a href="#">
+              <li className={styles.menuItem}>Home</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>How it works</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>Blog</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>Contacts</li>
+            </a>
           </ul>
         </div>
       </header>
       <main className={styles.main}>
         <div>
-          <p>IMAGE SECTION</p>
+          <Image
+            src="https://source.unsplash.com/photos/WF0LSThlRmw"
+            alt="Wardrobe picture"
+            width={800}
+            height={500}
+          />
         </div>
         <div>
           <button className={styles.button}>
