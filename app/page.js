@@ -26,26 +26,40 @@ export default function Home() {
         </div>
       </header>
       <main className={styles.main}>
-        <div>
+        <div className={styles.mainImageContainer}>
           <Image
-            src="https://source.unsplash.com/photos/WF0LSThlRmw"
+            className={styles.mainImage}
+            src="/../public/images/alexandra-gorn-WF0LSThlRmw-unsplash (1).jpg"
             alt="Wardrobe picture"
-            width={800}
-            height={500}
+            width={500}
+            height={400}
           />
         </div>
-        <div>
+        <div className={styles.createButtonContainer}>
           <button className={styles.button}>
-            create your digital wardrobe!
+            create <br></br> wardrobe
           </button>
         </div>
       </main>
       <footer className={styles.footer}>
         <div className={styles.copyright}>
-          <p>COPYRIGHT SECTION</p>
+          <p>copyright</p>
         </div>
-        <div>
-          <p>Contacts and quick menu section</p>
+        <div className={styles.footerMenu}>
+          <ul>
+            <a href="#">
+              <li className={styles.menuItem}>Instagram</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>Facebook</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>Blog</li>
+            </a>
+            <a href="#">
+              <li className={styles.menuItem}>Contacts</li>
+            </a>
+          </ul>
         </div>
       </footer>
     </>

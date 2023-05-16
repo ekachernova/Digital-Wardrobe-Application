@@ -2,20 +2,25 @@
   display: flex;
   height: 100px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
-  width: 30%;
+  width: 40%;
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 
 .menu ul {
   display: flex;
-  gap: 80px;
+  gap: 40px;
   align-self: center;
   padding-top: 40px;
   align-content: end;
+  font-size: 14px;
 }
 
 .menuItem {
@@ -23,19 +28,63 @@
 }
 
 .main {
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+}
+
+.mainImage {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.mainImageContainer {
+  width: 60%;
+  justify-content: center;
+}
+
+.createButtonContainer {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 150px;
+  background-color: fuchsia;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+}
+
+.button:hover {
+  background-color: orange;
 }
 
 .footer {
   display: flex;
-  height: 100px;
+  height: 60px;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 100px;
 }
-
+.copyright {
+  width: 40%;
+}
+.footerMenu {
+  width: 60%;
+}
+.footerMenu ul {
+  display: flex;
+  align-content: space-between;
+  gap: 20px;
+  font-size: 12px;
+}
 .description a {
   display: flex;
   justify-content: center;
