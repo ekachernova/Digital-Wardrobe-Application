@@ -1,5 +1,6 @@
 import styles from "../../page.module.css";
 import Image from "next/image";
+import CreateButton from "../CreateButton/CreateButton.js";
 
 export default function Main() {
   return (
@@ -13,9 +14,7 @@ export default function Main() {
           height={400}
         />
         <div className={styles.mainButtonContainer}>
-          <button className={styles.button}>
-            create <br></br> wardrobe
-          </button>
+          <CreateButton />
         </div>
       </section>
     </main>
