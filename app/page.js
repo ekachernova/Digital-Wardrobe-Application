@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </header>
       <main className={styles.main}>
-        <div className={styles.mainImageContainer}>
+        <section className={styles.mainDisclaimer}>
           <Image
             className={styles.mainImage}
             src="/../public/images/alexandra-gorn-WF0LSThlRmw-unsplash (1).jpg"
@@ -34,16 +34,16 @@ export default function Home() {
             width={500}
             height={400}
           />
-        </div>
-        <div className={styles.createButtonContainer}>
-          <button className={styles.button}>
-            create <br></br> wardrobe
-          </button>
-        </div>
+          <div className={styles.mainButtonContainer}>
+            <button className={styles.button}>
+              create <br></br> wardrobe
+            </button>
+          </div>
+        </section>
       </main>
       <footer className={styles.footer}>
         <div className={styles.copyright}>
-          <p>copyright</p>
+          <p>&copy; getyourwardrobe</p>
         </div>
         <div className={styles.footerMenu}>
           <ul>
