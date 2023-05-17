@@ -1,4 +1,7 @@
 import styles from "../../page.module.css";
+import Link from "next/link";
+
+//linking is not working!!!
 
 export default function Header() {
   return (
@@ -8,18 +11,18 @@ export default function Header() {
       </div>
       <div className={styles.menu}>
         <ul>
-          <a href="#">
+          <Link href="#">
             <li className={styles.menuItem}>Home</li>
-          </a>
-          <a href="#">
+          </Link>
+          <Link href="/pages/howitworks">
             <li className={styles.menuItem}>How it works</li>
-          </a>
+          </Link>
           <a href="#">
             <li className={styles.menuItem}>Blog</li>
           </a>
-          <a href="#">
+          <Link href="#">
             <li className={styles.menuItem}>Contacts</li>
-          </a>
+          </Link>
         </ul>
       </div>
     </header>
