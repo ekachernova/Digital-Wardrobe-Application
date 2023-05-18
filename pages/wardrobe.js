@@ -1,7 +1,7 @@
 export default function Wardrobe() {
   return (
     <div>
-      <p>wardrobe</p>
+      <h1>My Wardrobe</h1>
     </div>
   );
 }
