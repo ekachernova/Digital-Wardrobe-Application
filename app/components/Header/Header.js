@@ -1,8 +1,6 @@
 import styles from "../../page.module.css";
 import Link from "next/link";
 
-//linking is not working!!!
-
 export default function Header() {
   return (
     <header className={styles.header}>
@@ -11,10 +9,10 @@ export default function Header() {
       </div>
       <div className={styles.menu}>
         <ul>
-          <Link href="#">
+          <Link href="/">
             <li className={styles.menuItem}>Home</li>
           </Link>
-          <Link href="/pages/howitworks">
+          <Link href="/howitworks">
             <li className={styles.menuItem}>How it works</li>
           </Link>
           <a href="#">
