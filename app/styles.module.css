@@ -106,17 +106,32 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  background-color: gold;
+  background-color: gainsboro;
   width: 100%;
   /*height will be changed in order to add the new items
   */
   height: 400px;
 }
-.addItemButton {
+/* .addItemButton {
   width: 50px;
   height: 50px;
+} */
+
+.addItemButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: none;
+  background: fuchsia;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
 }
 
+.addItemButton:hover {
+  background: orange;
+}
 /* Responsive design section */
 /* Mobile
 @media (max-width: 700px) {
