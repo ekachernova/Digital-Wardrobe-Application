@@ -7,6 +7,8 @@ const clothingItemSchema = new Schema({
     title: String,
     type: String,
     url: String,
+    contenttype: String,
+    data: Buffer,
   },
 });
 
