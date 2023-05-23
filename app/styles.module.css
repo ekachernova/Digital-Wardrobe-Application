@@ -121,17 +121,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   background: fuchsia;
   color: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
 }
 
 .addItemButton:hover {
   background: orange;
 }
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: none;
+  background: grey;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
 /* Responsive design section */
 /* Mobile
 @media (max-width: 700px) {

@@ -2,6 +2,7 @@ import styles from "../app/styles.module.css";
 import { useState } from "react";
 import Image from "next/image";
 import { useRef } from "react";
+import { useEffect } from "react";
 
 export default function Wardrobe() {
   const [imageSrc, setImageSrc] = useState();
@@ -66,55 +67,106 @@ export default function Wardrobe() {
 
     setImageSrc(data.secure_url);
     setUploadData(data);
+
+    console.log(data);
   }
 
   return (
     <div className={styles.wardrobeWrapper}>
-      <h3>My Wardrobe</h3>
-      <div className={styles.wardrobeSection}>
-        <form
-          className={styles.form}
-          method="post"
-          onChange={handleOnChange}
-          onSubmit={handleOnSubmit}
+      <h3>Add your item to your wardrobe</h3>
+      <br></br>
+      <form className={styles.form}>
+        <label htmlFor="item-title">Title:</label>
+        <input type="input" name="item-title"></input>
+        <br></br>
+        <br></br>
+        <label htmlFor="item-type">Type:</label>
+        <input type="type" name="item-type"></input>
+        <br></br>
+        <br></br>
+        <button
+          className={styles.addItemButton}
+          onClick={(event) => {
+            event.preventDefault();
+            fileInputRef.current.click();
+          }}
         >
+          choose item
+        </button>
+        <input
+          type="file"
+          style={{ display: "none" }}
+          ref={fileInputRef}
+          onChange={handleOnChange}
+        ></input>
+        <br></br>
+        <button className={styles.submitButton} onSubmit={handleOnSubmit}>
+          add item
+        </button>
+      </form>
+
+      <div className={styles.wardrobeSection}>
+        {imageSrc && uploadData && (
           <p>
-            <button
-              className={styles.addItemButton}
-              onClick={(event) => {
-                event.preventDefault();
-                fileInputRef.current.click();
-              }}
-            >
-              {" "}
-              Add Item
-            </button>
-            <input
-              type="file"
-              name="file"
-              style={{ display: "none" }}
-              ref={fileInputRef}
-            />
+            <Image src={imageSrc} alt="item" width={150} height={250} />
           </p>
-          {imageSrc && uploadData && (
-            <p>
-              <Image src={imageSrc} alt="item" width={150} height={250} />
-            </p>
-          )}
+        )}
 
-          {imageSrc && !uploadData && (
-            <p>
-              <button>Add item to your wardrobe</button>
-            </p>
-          )}
-
-          {/* {uploadData && (
-            <code>
-              <pre>{JSON.stringify(uploadData, null, 2)}</pre>
-            </code>
-          )} */}
-        </form>
+        {imageSrc && !uploadData && (
+          <p>
+            <button>Add item</button>
+          </p>
+        )}
       </div>
     </div>
   );
+  // return (
+  //   <div className={styles.wardrobeWrapper}>
+  //     <h3>My Wardrobe</h3>
+  //     <div className={styles.wardrobeSection}>
+  //       <form
+  //         className={styles.form}
+  //         method="post"
+  //         onChange={handleOnChange}
+  //         onSubmit={handleOnSubmit}
+  //       >
+  //         <p>
+  //           <button
+  //             className={styles.addItemButton}
+  //             onClick={(event) => {
+  //               event.preventDefault();
+  //               fileInputRef.current.click();
+  //             }}
+  //           >
+  //             {" "}
+  //             Add Item
+  //           </button>
+  //           <input
+  //             type="file"
+  //             name="file"
+  //             style={{ display: "none" }}
+  //             ref={fileInputRef}
+  //           />
+  //         </p>
+  //         {imageSrc && uploadData && (
+  //           <p>
+  //             <Image src={imageSrc} alt="item" width={150} height={250} />
+  //           </p>
+  //         )}
+
+  //         {imageSrc && !uploadData && (
+  //           <p>
+  //             <button>Add item to your wardrobe</button>
+  //           </p>
+  //         )}
+
+  //         {uploadData && (
+  //           <code>
+  //             <pre>{JSON.stringify(uploadData, null, 2)}</pre>
+  //           </code>
+  //         )}
+  //       </form>
+  //     </div>
+  //   </div>
+  // );
 }
