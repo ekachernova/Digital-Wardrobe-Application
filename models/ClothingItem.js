@@ -3,11 +3,9 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const clothingItemSchema = new Schema({
-  clothingItem: {
-    title: String,
-    type: String,
-    url: String,
-  },
+  title: { type: String },
+  category: { type: String },
+  url: { type: String },
 });
 
 const ClothingItem =

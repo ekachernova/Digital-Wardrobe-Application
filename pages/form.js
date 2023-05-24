@@ -1,5 +1,8 @@
 import styles from "../app/styles.module.css";
 
+import { useEffect } from "react";
+import { useState } from "react";
+
 export default function Form() {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +32,7 @@ export default function Form() {
       body: JSONdata,
     };
 
-    // Send the form data to our forms API on Vercel and get a response.
+    // store items in API
     const response = await fetch(endpoint, options);
 
     // Get the response data from server as JSON.
@@ -38,30 +41,52 @@ export default function Form() {
     alert(`Is this the data from the form: ${result.data}`);
   };
 
+  const [items, setItems] = useState([{ title: "initial title" }]);
+
+  useEffect(() => {
+    const fetcher = async () => {
+      console.log("fetcher tirggered");
+      const response = await fetch("/api/items");
+      const jsonData = await response.json();
+      console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+      setItems(jsonData.data);
+    };
+
+    fetcher();
+  }, []);
+
   return (
     // We pass the event to the handleSubmit() function on submit.
-    <div className={styles.form}>
-      <h3>Add your first item to the wardrobe</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
+    <div className={styles.createWardrobeWrapper}>
+      <div className={styles.form}>
+        <h3>Add your first item to the wardrobe</h3>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">Title</label>
+            <br></br>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div>
+            <label htmlFor="category">Category</label>
+            <br></br>
+            <input type="text" id="category" name="category" required />
+          </div>
+          <div>
+            <label htmlFor="url">URL</label>
+            <br></br>
+            <input type="text" id="url" name="url" required />
+          </div>
           <br></br>
-          <input type="text" id="title" name="title" required />
-        </div>
-        <div>
-          <label htmlFor="category">Category</label>
-          <br></br>
-          <input type="text" id="category" name="category" required />
-        </div>
-        <div>
-          <label htmlFor="url">URL</label>
-          <br></br>
-          <input type="text" id="url" name="url" required />
-        </div>
-        <button className={styles.addItemButton} type="submit">
-          Submit
-        </button>
-      </form>
+          <button className={styles.addItemButton} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className={styles.wardrobeSection}>
+        {items.map((item, i) => {
+          return <img width={100} height={100} key={i} src={item.url} />;
+        })}
+      </div>
     </div>
   );
 }
