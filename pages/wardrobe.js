@@ -5,10 +5,10 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 export default function Wardrobe() {
-  const [imageSrc, setImageSrc] = useState();
-  const [uploadData, setUploadData] = useState();
+  // const [imageSrc, setImageSrc] = useState();
+  // const [uploadData, setUploadData] = useState();
 
-  const fileInputRef = useRef();
+  // const fileInputRef = useRef();
 
   function handleOnChange(changeEvent) {
     const reader = new FileReader();
@@ -76,13 +76,13 @@ export default function Wardrobe() {
       <h3>Add your item to your wardrobe</h3>
       <br></br>
       <form className={styles.form}>
-        <label htmlFor="item-title">Title:</label>
+        {/* <label htmlFor="item-title">Title:</label>
         <input type="input" name="item-title"></input>
         <br></br>
         <br></br>
         <label htmlFor="item-type">Type:</label>
-        <input type="type" name="item-type"></input>
-        <br></br>
+        <input type="type" name="item-type"></input> */}
+        {/* <br></br>
         <br></br>
         <button
           className={styles.addItemButton}
@@ -98,7 +98,7 @@ export default function Wardrobe() {
           style={{ display: "none" }}
           ref={fileInputRef}
           onChange={handleOnChange}
-        ></input>
+        ></input> */}
         <br></br>
         <button className={styles.submitButton} onSubmit={handleOnSubmit}>
           add item
@@ -106,17 +106,15 @@ export default function Wardrobe() {
       </form>
 
       <div className={styles.wardrobeSection}>
-        {imageSrc && uploadData && (
+        {/* {imageSrc && uploadData && (
           <p>
             <Image src={imageSrc} alt="item" width={150} height={250} />
           </p>
-        )}
+        )} */}
 
-        {imageSrc && !uploadData && (
-          <p>
-            <button>Add item</button>
-          </p>
-        )}
+        {/* {imageSrc && !uploadData && (
+          <p>There are no items still in your wardrobe</p>
+        )} */}
       </div>
     </div>
   );

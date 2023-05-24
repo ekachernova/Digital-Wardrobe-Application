@@ -7,7 +7,9 @@ export default function Main() {
     console.log("clicked");
   }
   return (
-    <Link href="/wardrobe">
+    //link changed for testing form
+
+    <Link href="/form">
       <button className={styles.button}>
         create <br></br> wardrobe
       </button>
