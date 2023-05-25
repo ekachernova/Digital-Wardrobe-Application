@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import styles from "../app/styles.module.css";
 
 import { useEffect } from "react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Form() {
   const handleSubmit = async (event) => {
@@ -20,15 +22,11 @@ export default function Form() {
     // API endpoint where we send form data.
     const endpoint = "/api/items";
 
-    // Form the request for sending data to the server.
     const options = {
-      // The method is POST because we are sending data.
       method: "POST",
-      // Tell the server we're sending JSON.
       headers: {
         "Content-Type": "application/json",
       },
-      // Body of the request is the JSON data we created above.
       body: JSONdata,
     };
 
@@ -38,28 +36,35 @@ export default function Form() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
-    alert(`Is this the data from the form: ${result.data}`);
+    // alert(`Is this the data from the form: ${result.data}`);
   };
 
   const [items, setItems] = useState([{ title: "initial title" }]);
 
   useEffect(() => {
     const fetcher = async () => {
-      console.log("fetcher tirggered");
+      // console.log("fetcher is working");
       const response = await fetch("/api/items");
       const jsonData = await response.json();
-      console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+      // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
       setItems(jsonData.data);
     };
 
     fetcher();
   }, []);
 
+  const router = useRouter();
+  const { id } = router.query;
+
+  async function handleDeleteItem() {
+    await fetch(`/api/items/${id}`, {
+      method: "DELETE",
+    });
+  }
   return (
-    // We pass the event to the handleSubmit() function on submit.
     <div className={styles.createWardrobeWrapper}>
       <div className={styles.form}>
-        <h3>Add your first item to the wardrobe</h3>
+        <h3>Add your clothes to the wardrobe</h3>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="title">Title</label>
@@ -84,7 +89,15 @@ export default function Form() {
       </div>
       <div className={styles.wardrobeSection}>
         {items.map((item, i) => {
-          return <img width={100} height={100} key={i} src={item.url} />;
+          return (
+            <img
+              width={100}
+              height={100}
+              key={i}
+              src={item.url}
+              onClick={handleDeleteItem}
+            />
+          );
         })}
       </div>
     </div>
