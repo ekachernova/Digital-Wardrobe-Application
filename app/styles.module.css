@@ -191,16 +191,10 @@
   }
 
   .wardrobeSection {
-    margin-top: 100px;
     width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    background-image: none;
-    background-color: orange;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-radius: 8px;
     gap: 20px;
+    padding: 20px;
+    height: fit-content;
   }
 
   .header {
@@ -214,6 +208,13 @@
 
   .menu {
     align-items: center;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column-reverse;
+    align-content: center;
+    gap: 10px;
   }
 }
 /* Responsive design section */
