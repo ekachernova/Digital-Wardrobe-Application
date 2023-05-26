@@ -6,6 +6,21 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function Form() {
+  const [weather, setWeather] = useState({});
+
+  useEffect(() => {
+    async function weatherFetch() {
+      const response = await fetch(
+        "http://api.weatherapi.com/v1/current.json?key=1f37f1e7fbfc4a2d9f8115546232605&q=Berlin&aqi=no"
+      );
+
+      const weather = await response.json();
+      setWeather(weather);
+      console.log(weather);
+    }
+    weatherFetch();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
