@@ -16,7 +16,7 @@ export default function Form() {
       url: event.target.url.value,
     };
 
-    // Send the data to the server in JSON format.
+    // Send data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
 
     // API endpoint where we send form data.
@@ -36,30 +36,36 @@ export default function Form() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json();
-    // alert(`Is this the data from the form: ${result.data}`);
+    syncItems();
   };
 
   const [items, setItems] = useState([{ title: "initial title" }]);
 
-  useEffect(() => {
-    const fetcher = async () => {
-      // console.log("fetcher is working");
-      const response = await fetch("/api/items");
-      const jsonData = await response.json();
-      // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
-      setItems(jsonData.data);
-    };
+  const syncItems = async () => {
+    // console.log("fetcher is working");
+    const response = await fetch("/api/items");
+    const jsonData = await response.json();
+    // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+    setItems(jsonData.data);
+  };
 
-    fetcher();
+  useEffect(() => {
+    syncItems();
   }, []);
 
   const router = useRouter();
   const { id } = router.query;
 
-  async function handleDeleteItem() {
-    await fetch(`/api/items/${id}`, {
-      method: "DELETE",
-    });
+  function handleDeleteItem(id) {
+    console.log(`wrapper for delete image handler with id: ${id}`);
+    return async () => {
+      console.log(`handler with id: ${id}`);
+      await fetch(`/api/items/${id}`, {
+        method: "DELETE",
+      });
+      // can be a call to syncItems() instead
+      setItems((items) => items.filter((i) => i._id != id));
+    };
   }
   return (
     <div className={styles.createWardrobeWrapper}>
@@ -95,7 +101,7 @@ export default function Form() {
               height={100}
               key={i}
               src={item.url}
-              onClick={handleDeleteItem}
+              onClick={handleDeleteItem(item._id)}
             />
           );
         })}
