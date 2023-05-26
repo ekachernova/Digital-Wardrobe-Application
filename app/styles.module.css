@@ -19,7 +19,7 @@
   gap: 40px;
   align-self: center;
   padding-top: 40px;
-  align-content: end;
+  align-content: flex-end;
   font-size: 14px;
 }
 
@@ -36,28 +36,31 @@
 .mainDisclaimer {
   margin-top: 40px;
   display: flex;
-  gap: 50px;
+  gap: 20px;
 }
 
 .mainImage {
+  width: 70%;
   border-radius: 6px;
   object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .mainButtonContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 50px;
 }
 
 .button {
-  width: 150px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   background-color: fuchsia;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 100px;
   border: none;
   font-size: 18px;
 }
@@ -83,7 +86,7 @@
 .footerMenu {
   width: 60%;
   display: flex;
-  align-content: end;
+  align-content: flex-end;
 }
 .footerMenu ul {
   display: flex;
@@ -121,16 +124,98 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
-  background: fuchsia;
+  background: teal;
   color: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
 }
 
 .addItemButton:hover {
   background: orange;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: none;
+  background: grey;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.createWardrobeWrapper {
+  display: flex;
+  gap: 20px;
+}
+.form {
+  margin-top: 100px;
+  width: 30%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.form h3 {
+  margin-bottom: 20px;
+}
+
+.wardrobeSection {
+  margin-top: 100px;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url("https://images.unsplash.com/photo-1527519124254-9dafd8b3533b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80");
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.wardrobeSection img {
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media (max-width: 700px) {
+  .createWardrobeWrapper {
+    flex-direction: column;
+  }
+
+  .form {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .wardrobeSection {
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+    height: fit-content;
+  }
+
+  .header {
+    margin-top: 40px;
+    flex-direction: column;
+  }
+  .logo {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .menu {
+    align-items: center;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column-reverse;
+    align-content: center;
+    gap: 10px;
+  }
 }
 /* Responsive design section */
 /* Mobile

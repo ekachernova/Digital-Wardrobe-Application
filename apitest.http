@@ -1,0 +1,24 @@
+POST http://localhost:3000/api/items HTTP/1.1
+content-type: application/json
+
+{
+      "title": "test title {{$randomInt 5 200}}",
+      "category": "test category",
+      "url": "https://loremflickr.com/320/240/clothing?lock={{$randomInt 0 99999}}"
+}
+
+### 
+
+# @name items
+GET http://localhost:3000/api/items HTTP/1.1
+content-type: application/json
+
+### 
+@victim = {{items.response.body.data[10]._id}}
+GET http://localhost:3000/api/items/{{victim}} HTTP/1.1
+content-type: application/json
+
+
+### 
+DELETE http://localhost:3000/api/items/{{victim}} HTTP/1.1
+
