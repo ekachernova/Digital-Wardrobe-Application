@@ -4,6 +4,7 @@ import styles from "../app/styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import Link from "next/link";
+import Weather from "@/app/components/Weather/Weather";
 
 export default function Form() {
   const handleSubmit = async (event) => {
@@ -68,43 +69,46 @@ export default function Form() {
     };
   }
   return (
-    <div className={styles.createWardrobeWrapper}>
-      <div className={styles.form}>
-        <h3>Add your clothes to the wardrobe</h3>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="title">Title</label>
+    <div>
+      <Weather />
+      <div className={styles.createWardrobeWrapper}>
+        <div className={styles.form}>
+          <h3>Add your clothes to the wardrobe</h3>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="title">Title</label>
+              <br></br>
+              <input type="text" id="title" name="title" required />
+            </div>
+            <div>
+              <label htmlFor="category">Category</label>
+              <br></br>
+              <input type="text" id="category" name="category" required />
+            </div>
+            <div>
+              <label htmlFor="url">URL</label>
+              <br></br>
+              <input type="text" id="url" name="url" required />
+            </div>
             <br></br>
-            <input type="text" id="title" name="title" required />
-          </div>
-          <div>
-            <label htmlFor="category">Category</label>
-            <br></br>
-            <input type="text" id="category" name="category" required />
-          </div>
-          <div>
-            <label htmlFor="url">URL</label>
-            <br></br>
-            <input type="text" id="url" name="url" required />
-          </div>
-          <br></br>
-          <button className={styles.addItemButton} type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
-      <div className={styles.wardrobeSection}>
-        {items.map((item, i) => {
-          return (
-            <img
-              width={100}
-              height={100}
-              key={i}
-              src={item.url}
-              onClick={handleDeleteItem(item._id)}
-            />
-          );
-        })}
+            <button className={styles.addItemButton} type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className={styles.wardrobeSection}>
+          {items.map((item, i) => {
+            return (
+              <img
+                width={100}
+                height={120}
+                key={i}
+                src={item.url}
+                onClick={handleDeleteItem(item._id)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
