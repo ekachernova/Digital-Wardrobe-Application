@@ -83,43 +83,61 @@ export default function Form() {
     };
   }
   return (
-    <div className={styles.createWardrobeWrapper}>
-      <div className={styles.form}>
-        <h3>Add your clothes to the wardrobe</h3>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="title">Title</label>
-            <br></br>
-            <input type="text" id="title" name="title" required />
-          </div>
-          <div>
-            <label htmlFor="category">Category</label>
-            <br></br>
-            <input type="text" id="category" name="category" required />
-          </div>
-          <div>
-            <label htmlFor="url">URL</label>
-            <br></br>
-            <input type="text" id="url" name="url" required />
-          </div>
-          <br></br>
-          <button className={styles.addItemButton} type="submit">
-            Submit
-          </button>
-        </form>
+    <div>
+      <div className={styles.weather}>
+        <img
+          src={
+            weather?.current?.condition === "rainy"
+              ? "https://images.unsplash.com/photo-1512511708753-3150cd2ec8ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+              : "https://images.unsplash.com/photo-1604228741406-3faa38f4907a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1164&q=80"
+          }
+          width={150}
+          height={150}
+        ></img>
+        <div>
+          <h3>{`Hello!The temperature in ${weather?.location?.name}
+          today is
+          ${weather?.current?.temp_c} °C`}</h3>
+        </div>
       </div>
-      <div className={styles.wardrobeSection}>
-        {items.map((item, i) => {
-          return (
-            <img
-              width={100}
-              height={100}
-              key={i}
-              src={item.url}
-              onClick={handleDeleteItem(item._id)}
-            />
-          );
-        })}
+      <div className={styles.createWardrobeWrapper}>
+        <div className={styles.form}>
+          <h3>Add your clothes to the wardrobe</h3>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="title">Title</label>
+              <br></br>
+              <input type="text" id="title" name="title" required />
+            </div>
+            <div>
+              <label htmlFor="category">Category</label>
+              <br></br>
+              <input type="text" id="category" name="category" required />
+            </div>
+            <div>
+              <label htmlFor="url">URL</label>
+              <br></br>
+              <input type="text" id="url" name="url" required />
+            </div>
+            <br></br>
+            <button className={styles.addItemButton} type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className={styles.wardrobeSection}>
+          {items.map((item, i) => {
+            return (
+              <img
+                width={100}
+                height={120}
+                key={i}
+                src={item.url}
+                onClick={handleDeleteItem(item._id)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
