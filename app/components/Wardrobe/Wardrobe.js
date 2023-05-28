@@ -1,12 +1,9 @@
-import { useRouter } from "next/router";
-import styles from "../app/styles.module.css";
-
+import styles from "../../styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
-import Link from "next/link";
-import Weather from "@/app/components/Weather/Weather";
+import { useRouter } from "next/router";
 
-export default function Form() {
+export default function Wardrobe(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -14,9 +11,12 @@ export default function Form() {
     const data = {
       title: event.target.title.value,
       category: event.target.category.value,
+      colour: event.target.colour.value,
+      season: event.target.season.value,
       url: event.target.url.value,
     };
 
+    console.log(data);
     // Send data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
 
@@ -69,46 +69,53 @@ export default function Form() {
     };
   }
   return (
-    <div>
-      <Weather />
-      <div className={styles.createWardrobeWrapper}>
-        <div className={styles.form}>
-          <h3>Add your clothes to the wardrobe</h3>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="title">Title</label>
-              <br></br>
-              <input type="text" id="title" name="title" required />
-            </div>
-            <div>
-              <label htmlFor="category">Category</label>
-              <br></br>
-              <input type="text" id="category" name="category" required />
-            </div>
-            <div>
-              <label htmlFor="url">URL</label>
-              <br></br>
-              <input type="text" id="url" name="url" required />
-            </div>
+    <div className={styles.createWardrobeWrapper}>
+      <div className={styles.form}>
+        <h3>Add your clothes to the wardrobe</h3>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">Title</label>
             <br></br>
-            <button className={styles.addItemButton} type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
-        <div className={styles.wardrobeSection}>
-          {items.map((item, i) => {
-            return (
-              <img
-                width={100}
-                height={120}
-                key={i}
-                src={item.url}
-                onClick={handleDeleteItem(item._id)}
-              />
-            );
-          })}
-        </div>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div>
+            <label htmlFor="category">Category</label>
+            <br></br>
+            <input type="text" id="category" name="category" required />
+          </div>
+          <div>
+            <label htmlFor="colour">Colour</label>
+            <br></br>
+            <input type="text" id="colour" name="colour" required />
+          </div>
+          <div>
+            <label htmlFor="season">Season</label>
+            <br></br>
+            <input type="text" id="season" name="season" required />
+          </div>
+          <div>
+            <label htmlFor="url">URL</label>
+            <br></br>
+            <input type="text" id="url" name="url" required />
+          </div>
+          <br></br>
+          <button className={styles.addItemButton} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className={styles.wardrobeSection}>
+        {items.map((item, i) => {
+          return (
+            <img
+              width={100}
+              height={120}
+              key={i}
+              src={item.url}
+              onClick={handleDeleteItem(item._id)}
+            />
+          );
+        })}
       </div>
     </div>
   );

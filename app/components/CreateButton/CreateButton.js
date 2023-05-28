@@ -9,7 +9,7 @@ export default function Main() {
   return (
     //link changed for testing form
 
-    <Link href="/form">
+    <Link href="/createwardrobe">
       <button className={styles.button}>
         create <br></br> wardrobe
       </button>
