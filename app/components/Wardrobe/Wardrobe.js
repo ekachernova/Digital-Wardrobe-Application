@@ -91,7 +91,13 @@ export default function Wardrobe(props) {
           <div>
             <label htmlFor="season">Season</label>
             <br></br>
-            <input type="text" id="season" name="season" required />
+            {/* <input type="text" id="season" name="season" required /> */}
+            <select name="season" id="season" required>
+              <option value="warm">warm</option>
+              <option value="cold">cold</option>
+              <option value="cold-rainy">cold rainy</option>
+              <option value="warm-rainy">warm rainy </option>
+            </select>
           </div>
           <div>
             <label htmlFor="url">URL</label>
