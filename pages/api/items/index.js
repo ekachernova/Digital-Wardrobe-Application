@@ -1,7 +1,10 @@
 import dbConnect from "@/lib/connect";
 import ClothingItem from "@/models/ClothingItem";
+import { inspect } from "util";
 
 export default async function handler(req, res) {
+  console.log(inspect(req.query));
+
   if (!(req.method == "POST" || req.method == "GET")) {
     console.log(`#### failed on method validation`);
     return res.status(400).json({ success: false });
@@ -34,6 +37,8 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
+    const filter = req.query.filter;
+
     try {
       const items = await ClothingItem.find().skip(0).limit(50);
       return res.status(201).json({ success: true, data: items });
