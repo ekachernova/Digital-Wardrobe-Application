@@ -73,7 +73,6 @@ export default function Wardrobe(props) {
       setItems((items) => items.filter((i) => i._id != id));
     };
   }
-
   function handelFilterButton(event) {
     if (globalWeather.current.temp_c >= 15) {
       // console.log("filter is on");
