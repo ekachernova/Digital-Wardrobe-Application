@@ -2,9 +2,12 @@ import styles from "../../styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { storeVariables } from "@/store/storeVariables";
+import { useSnapshot } from "valtio";
 
 export default function Wardrobe(props) {
-  const [weather, setWeather] = useState({});
+  const { globalWeather } = useSnapshot(storeVariables);
+  console.log("global weather", globalWeather);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -72,10 +75,41 @@ export default function Wardrobe(props) {
   }
 
   function handelFilterButton(event) {
-    if (event) {
+    if (globalWeather.current.temp_c >= 15) {
       // console.log("filter is on");
-      setItems((items) => items.filter((item) => item.season === "summer"));
+      setItems((items) =>
+        items.filter((item) => item.season === "all" || item.season === "warm")
+      );
     }
+    if (
+      globalWeather.current.temp_c >= 15 &&
+      globalWeather.current.condition.code >= 1063
+    ) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter(
+          (item) => item.season === "all" || item.season === "warm-rainy"
+        )
+      );
+    }
+    if (globalWeather.current.temp_c < 15) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter((item) => item.season === "all" || item.season === "cold")
+      );
+    }
+    if (
+      globalWeather.current.temp_c < 15 &&
+      globalWeather.current.condition.code >= 1063
+    ) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter(
+          (item) => item.season === "all" || item.season === "cold-rainy"
+        )
+      );
+    }
+
     return;
   }
   return (
@@ -113,6 +147,7 @@ export default function Wardrobe(props) {
                 <option value="cold">cold</option>
                 <option value="cold-rainy">cold rainy</option>
                 <option value="warm-rainy">warm rainy </option>
+                <option value="all">all </option>
               </select>
             </div>
             <div>

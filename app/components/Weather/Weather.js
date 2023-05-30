@@ -1,9 +1,15 @@
 import styles from "../../styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
+import { storeVariables } from "@/store/storeVariables";
+import { useSnapshot } from "valtio";
 
 export default function Weather() {
   const [weather, setWeather] = useState({});
+
+  const actualWeather = useSnapshot(storeVariables);
+
+  console.log(actualWeather);
 
   useEffect(() => {
     async function weatherFetch() {
@@ -13,6 +19,7 @@ export default function Weather() {
 
       const weather = await response.json();
       setWeather(weather);
+      storeVariables.globalWeather = weather;
       console.log(weather);
     }
     weatherFetch();
