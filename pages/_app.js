@@ -1,5 +1,5 @@
-import Header from "@/app/components/Header/Header";
-import Footer from "@/app/components/Footer/Footer";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 import "../app/globals.css";
 
 const Layout = ({ children }) => {
