@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
+import Card from "../Card";
+import Weather from "../Weather";
+import Outfits from "../Outfits";
 
-export default function Wardrobe(props) {
+export default function Wardrobe(handler) {
   const { globalWeather } = useSnapshot(storeVariables);
   console.log("global weather", globalWeather);
 
@@ -113,12 +116,8 @@ export default function Wardrobe(props) {
   }
   return (
     <div>
-      <div>
-        <button className={styles.filterButton} onClick={handelFilterButton}>
-          Sync your wardrobe!
-        </button>
-      </div>
-      <div className={styles.createWardrobeWrapper}>
+      <div className={styles.formContainer}>
+        <Weather />
         <div className={styles.form}>
           <h3>Add your clothes to the wardrobe</h3>
           <form onSubmit={handleSubmit}>
@@ -160,19 +159,29 @@ export default function Wardrobe(props) {
             </button>
           </form>
         </div>
-        <div className={styles.wardrobeSection}>
-          {items.map((item, i) => {
-            return (
-              <img
-                width={100}
-                height={120}
-                key={i}
-                src={item.url}
-                onClick={handleDeleteItem(item._id)}
-              />
-            );
-          })}
+      </div>
+      <div>
+        <button className={styles.filterButton} onClick={handelFilterButton}>
+          Sync your wardrobe!
+        </button>
+      </div>
+      <div className={styles.wardrobeAndOutfitsWrapper}>
+        <div className={styles.createWardrobeWrapper}>
+          <div className={styles.wardrobeSection}>
+            {items.map((item, i) => {
+              return (
+                <Card
+                  key={item.id}
+                  clickHandler={handleDeleteItem(item._id)}
+                  url={item.url}
+                  index={i}
+                  handler={handler}
+                />
+              );
+            })}
+          </div>
         </div>
+        <Outfits />
       </div>
     </div>
   );
