@@ -2,14 +2,15 @@ import styles from "../../styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import WardrobeArea from "../WardrobeArea";
-// import { storeVariables } from "@/store/storeVariables";
-// import { useSnapshot } from "valtio";
-// import { useDrag } from "react-dnd";
+import { storeVariables } from "@/store/storeVariables";
+import { useSnapshot } from "valtio";
+import Card from "../Card";
+import Weather from "../Weather";
+import Outfits from "../Outfits";
 
-export default function Wardrobe(props) {
-  // const { globalWeather } = useSnapshot(storeVariables);
-  // console.log("global weather", globalWeather);
+export default function Wardrobe(handler) {
+  const { globalWeather } = useSnapshot(storeVariables);
+  console.log("global weather", globalWeather);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,80 +48,76 @@ export default function Wardrobe(props) {
     syncItems();
   };
 
-  // const [items, setItems] = useState([{ title: "initial title" }]);
+  const [items, setItems] = useState([{ title: "initial title" }]);
 
-  // const syncItems = async () => {
-  //   // console.log("fetcher is working");
-  //   const response = await fetch("/api/items");
-  //   const jsonData = await response.json();
-  //   // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
-  //   setItems(jsonData.data);
-  // };
+  const syncItems = async () => {
+    // console.log("fetcher is working");
+    const response = await fetch("/api/items");
+    const jsonData = await response.json();
+    // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+    setItems(jsonData.data);
+  };
 
-  // useEffect(() => {
-  //   syncItems();
-  // }, []);
+  useEffect(() => {
+    syncItems();
+  }, []);
 
-  // const router = useRouter();
-  // const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
 
-  // function handleDeleteItem(id) {
-  //   console.log(`wrapper for delete image handler with id: ${id}`);
-  //   return async () => {
-  //     console.log(`handler with id: ${id}`);
-  //     await fetch(`/api/items/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     // can be a call to syncItems() instead
-  //     setItems((items) => items.filter((i) => i._id != id));
-  //   };
-  // }
-  // function handelFilterButton(event) {
-  //   if (globalWeather.current.temp_c >= 15) {
-  //     // console.log("filter is on");
-  //     setItems((items) =>
-  //       items.filter((item) => item.season === "all" || item.season === "warm")
-  //     );
-  //   }
-  //   if (
-  //     globalWeather.current.temp_c >= 15 &&
-  //     globalWeather.current.condition.code >= 1063
-  //   ) {
-  //     // console.log("filter is on");
-  //     setItems((items) =>
-  //       items.filter(
-  //         (item) => item.season === "all" || item.season === "warm-rainy"
-  //       )
-  //     );
-  //   }
-  //   if (globalWeather.current.temp_c < 15) {
-  //     // console.log("filter is on");
-  //     setItems((items) =>
-  //       items.filter((item) => item.season === "all" || item.season === "cold")
-  //     );
-  //   }
-  //   if (
-  //     globalWeather.current.temp_c < 15 &&
-  //     globalWeather.current.condition.code >= 1063
-  //   ) {
-  //     // console.log("filter is on");
-  //     setItems((items) =>
-  //       items.filter(
-  //         (item) => item.season === "all" || item.season === "cold-rainy"
-  //       )
-  //     );
-  //   }
+  function handleDeleteItem(id) {
+    console.log(`wrapper for delete image handler with id: ${id}`);
+    return async () => {
+      console.log(`handler with id: ${id}`);
+      await fetch(`/api/items/${id}`, {
+        method: "DELETE",
+      });
+      // can be a call to syncItems() instead
+      setItems((items) => items.filter((i) => i._id != id));
+    };
+  }
+  function handelFilterButton(event) {
+    if (globalWeather.current.temp_c >= 15) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter((item) => item.season === "all" || item.season === "warm")
+      );
+    }
+    if (
+      globalWeather.current.temp_c >= 15 &&
+      globalWeather.current.condition.code >= 1063
+    ) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter(
+          (item) => item.season === "all" || item.season === "warm-rainy"
+        )
+      );
+    }
+    if (globalWeather.current.temp_c < 15) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter((item) => item.season === "all" || item.season === "cold")
+      );
+    }
+    if (
+      globalWeather.current.temp_c < 15 &&
+      globalWeather.current.condition.code >= 1063
+    ) {
+      // console.log("filter is on");
+      setItems((items) =>
+        items.filter(
+          (item) => item.season === "all" || item.season === "cold-rainy"
+        )
+      );
+    }
 
-  //   return;
-
+    return;
+  }
   return (
     <div>
-      {/* <div>
-        <button className={styles.filterButton} onClick={handelFilterButton}>
-          Sync your wardrobe!
-        </button>
-      </div> */}
-      <div className={styles.createWardrobeWrapper}>
+      <div className={styles.formContainer}>
+        <Weather />
         <div className={styles.form}>
           <h3>Add your clothes to the wardrobe</h3>
           <form onSubmit={handleSubmit}>
@@ -162,21 +159,29 @@ export default function Wardrobe(props) {
             </button>
           </form>
         </div>
-        {/* <div className={styles.wardrobeSection}>
-          {items.map((item, i) => {
-            return (
-              <img
-                draggable
-                width={100}
-                height={120}
-                key={i}
-                src={item.url}
-                onClick={handleDeleteItem(item._id)}
-              />
-            );
-          })}
-        </div> */}
-        <WardrobeArea showFilter={false} />
+      </div>
+      <div>
+        <button className={styles.filterButton} onClick={handelFilterButton}>
+          Sync your wardrobe!
+        </button>
+      </div>
+      <div className={styles.wardrobeAndOutfitsWrapper}>
+        <div className={styles.createWardrobeWrapper}>
+          <div className={styles.wardrobeSection}>
+            {items.map((item, i) => {
+              return (
+                <Card
+                  key={item.id}
+                  clickHandler={handleDeleteItem(item._id)}
+                  url={item.url}
+                  index={i}
+                  handler={handler}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <Outfits />
       </div>
     </div>
   );

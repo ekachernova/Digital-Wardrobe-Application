@@ -41,8 +41,17 @@ export default function TargetOutfit() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={styles.wardrobeSection}>
-        {items.map((id) => {
-          return <Card key={1} id={id} handler={handler} />;
+        {items.map((id, item) => {
+          return (
+            <Card
+              key={1}
+              id={id}
+              handler={handler}
+              url={item.url}
+              width={100}
+              height={120}
+            />
+          );
         })}
       </div>
     </DndProvider>

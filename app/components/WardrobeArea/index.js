@@ -5,7 +5,7 @@ import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Card from "../Card";
 
-export default function WardrobeArea({ showFilter }) {
+export default function WardrobeArea({ showFilter, handler }) {
   const { globalWeather } = useSnapshot(storeVariables);
   console.log("global weather", globalWeather);
   const [items, setItems] = useState([{ title: "initial title" }]);
@@ -91,6 +91,7 @@ export default function WardrobeArea({ showFilter }) {
                 clickHandler={handleDeleteItem(item._id)}
                 url={item.url}
                 index={i}
+                handler={handler}
               />
             </>
           );

@@ -17,15 +17,14 @@ export default function Card({ i, url, clickHandler }) {
   }));
 
   return (
-    <div ref={drag}>
-      <img
-        draggable
-        width={100}
-        height={120}
-        key={i}
-        src={url}
-        onClick={clickHandler}
-      />
-    </div>
+    <img
+      ref={drag}
+      draggable
+      width={100}
+      height={120}
+      key={i}
+      src={url}
+      onClick={clickHandler}
+    />
   );
 }

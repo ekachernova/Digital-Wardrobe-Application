@@ -1,11 +1,14 @@
 import styles from "../../styles.module.css";
-import WardrobeArea from "../WardrobeArea";
 import DropArea from "../DropArea";
+import { useState } from "react";
 
-export default function Outfits({ ids }) {
+export default function Outfits() {
+  const [ids, setIds] = useState([]);
+  const handler = (id) => {
+    setIds((ids) => [...ids, id]);
+  };
   return (
     <div className={styles.outfitsSection}>
-      <WardrobeArea className={styles.dragArea} showFilter={true} ids={ids} />
       <DropArea className={styles.dropArea} ids={ids} />
     </div>
   );

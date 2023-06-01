@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.copyright}>
-        <p>&copy; getyourwardrobe</p>
+        {/* <p>&copy; getyourwardrobe</p> */}
       </div>
       <div className={styles.footerMenu}>
         <ul>
