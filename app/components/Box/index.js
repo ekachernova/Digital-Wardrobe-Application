@@ -1,30 +1,32 @@
 import { useDrag } from "react-dnd";
 
-export default function Card({ i, url, clickHandler }) {
+export default function Box({ i, url, handler, id }) {
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: "Card",
-    item: { url },
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      if (item && dropResult) {
-        alert(`You dropped ${item.url} into ${dropResult.url}!`);
-      }
-    },
+    type: "Box",
+    item: { id },
+
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
       handlerId: monitor.getHandlerId(),
     }),
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult(id);
+      if (item && dropResult) {
+        alert(`You dropped ${item.id} into ${dropResult.id}!`);
+      }
+    },
   }));
 
   return (
     <img
+      id={id}
       ref={drag}
       draggable
       width={100}
       height={120}
       key={i}
       src={url}
-      onClick={clickHandler}
+      onClick={handler}
     />
   );
 }

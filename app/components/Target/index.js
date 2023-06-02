@@ -1,11 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styles from "../../styles.module.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Card from "../Card";
+import Box from "../Box";
 import { useEffect } from "react";
 
-export default function TargetOutfit() {
+export default function Target({ ids }) {
   const [items, setItems] = useState([{ title: "initial title" }]);
 
   const syncItems = async () => {
@@ -32,22 +32,22 @@ export default function TargetOutfit() {
     };
   }
 
-  const [ids, setIds] = useState([]);
+  // const [ids, setIds] = useState([]);
 
-  const handler = (id) => {
-    setIds((ids) => [...ids, id]);
-  };
+  // const handler = (id) => {
+  //   setIds((ids) => [...ids, id]);
+  // };
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={styles.wardrobeSection}>
-        {items.map((id, item) => {
+        {items.map((id) => {
           return (
-            <Card
+            <Box
               key={1}
               id={id}
               handler={handler}
-              url={item.url}
+              url={url}
               width={100}
               height={120}
             />
