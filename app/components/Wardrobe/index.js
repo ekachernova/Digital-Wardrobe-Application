@@ -185,7 +185,7 @@ export default function Wardrobe() {
           </div>
         </div>
         {/* <Outfits /> */}
-        <Bucket />
+        <Bucket id={id} />
       </div>
     </div>
   );
