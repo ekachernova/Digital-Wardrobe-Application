@@ -6,31 +6,31 @@ import Box from "../Box";
 import { useEffect } from "react";
 
 export default function Target({ ids }) {
-  const [items, setItems] = useState([{ title: "initial title" }]);
+  // const [items, setItems] = useState([{ title: "initial title" }]);
 
-  const syncItems = async () => {
-    // console.log("fetcher is working");
-    const response = await fetch("/api/items");
-    const jsonData = await response.json();
-    // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
-    setItems(jsonData.data);
-  };
+  // const syncItems = async () => {
+  //   // console.log("fetcher is working");
+  //   const response = await fetch("/api/items");
+  //   const jsonData = await response.json();
+  //   // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+  //   setItems(jsonData.data);
+  // };
 
-  useEffect(() => {
-    syncItems();
-  }, []);
+  // useEffect(() => {
+  //   syncItems();
+  // }, []);
 
-  function handleDeleteItem(id) {
-    console.log(`wrapper for delete image handler with id: ${id}`);
-    return async () => {
-      console.log(`handler with id: ${id}`);
-      await fetch(`/api/items/${id}`, {
-        method: "DELETE",
-      });
-      // can be a call to syncItems() instead
-      setItems((items) => items.filter((i) => i._id != id));
-    };
-  }
+  // function handleDeleteItem(id) {
+  //   console.log(`wrapper for delete image handler with id: ${id}`);
+  //   return async () => {
+  //     console.log(`handler with id: ${id}`);
+  //     await fetch(`/api/items/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     // can be a call to syncItems() instead
+  //     setItems((items) => items.filter((i) => i._id != id));
+  //   };
+  // }
 
   // const [ids, setIds] = useState([]);
 
@@ -50,6 +50,7 @@ export default function Target({ ids }) {
               url={url}
               width={100}
               height={120}
+              onClick={handleDeleteItem}
             />
           );
         })}

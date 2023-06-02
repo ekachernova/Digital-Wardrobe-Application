@@ -179,7 +179,6 @@ export default function Wardrobe() {
                   clickHandler={handleDeleteItem(item._id)}
                   url={item.url}
                   index={i}
-                  // handler={handler}
                 />
               );
             })}

@@ -1,6 +1,10 @@
 import { useDrag } from "react-dnd";
+import { useSnapshot } from "valtio";
+import { storeVariables } from "@/store/storeVariables";
 
-export default function Box({ i, url, handler, id }) {
+export default function Box({ i, url, clickHandler, id }) {
+  const { globalWardrobe } = useSnapshot(storeVariables);
+
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "Box",
     item: { id },
@@ -26,7 +30,7 @@ export default function Box({ i, url, handler, id }) {
       height={120}
       key={i}
       src={url}
-      onClick={handler}
+      onClick={clickHandler}
     />
   );
 }
