@@ -4,13 +4,16 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
-import Card from "../Card";
+import Box from "../Box";
 import Weather from "../Weather";
-import Outfits from "../Outfits";
+// import Outfits from "../Outfits";
+import Bucket from "../Bucket";
 
-export default function Wardrobe(handler) {
+export default function Wardrobe() {
   const { globalWeather } = useSnapshot(storeVariables);
+  const { globalWardrobe } = useSnapshot(storeVariables);
   console.log("global weather", globalWeather);
+  console.log("global wardrobe", globalWardrobe);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,6 +59,7 @@ export default function Wardrobe(handler) {
     const jsonData = await response.json();
     // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
     setItems(jsonData.data);
+    storeVariables.globalWardrobe = items;
   };
 
   useEffect(() => {
@@ -170,18 +174,18 @@ export default function Wardrobe(handler) {
           <div className={styles.wardrobeSection}>
             {items.map((item, i) => {
               return (
-                <Card
+                <Box
                   key={item.id}
                   clickHandler={handleDeleteItem(item._id)}
                   url={item.url}
                   index={i}
-                  handler={handler}
                 />
               );
             })}
           </div>
         </div>
-        <Outfits />
+        {/* <Outfits /> */}
+        <Bucket id={id} />
       </div>
     </div>
   );

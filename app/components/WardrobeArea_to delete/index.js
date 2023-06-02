@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
-import Card from "../Card";
+import Box from "../Box";
 
 export default function WardrobeArea({ showFilter, handler }) {
   const { globalWeather } = useSnapshot(storeVariables);
@@ -87,11 +87,11 @@ export default function WardrobeArea({ showFilter, handler }) {
         {items.map((item, i) => {
           return (
             <>
-              <Card
+              <Box
                 clickHandler={handleDeleteItem(item._id)}
                 url={item.url}
                 index={i}
-                handler={handler}
+                // handler={handler}
               />
             </>
           );
