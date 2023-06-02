@@ -1,6 +1,7 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import "../app/globals.css";
+import { SessionProvider } from "next-auth/react";
 
 const Layout = ({ children }) => {
   return (
@@ -15,7 +16,9 @@ const Layout = ({ children }) => {
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <SessionProvider>
+        <Component {...pageProps} />
+      </SessionProvider>
     </Layout>
   );
 }
