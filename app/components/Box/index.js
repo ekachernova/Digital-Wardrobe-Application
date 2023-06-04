@@ -1,6 +1,6 @@
 import { useDrag } from "react-dnd";
 
-export default function Box({ index, id, url, clickHandler }) {
+export default function Box({ id, url, index, clickHandler }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "Box",
     item: { id },

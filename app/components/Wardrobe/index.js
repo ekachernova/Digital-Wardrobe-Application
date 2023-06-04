@@ -1,7 +1,6 @@
 import styles from "../../styles.module.css";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Box from "../Box";
@@ -22,7 +21,7 @@ export default function Wardrobe({ key }) {
     const jsonData = await response.json();
 
     setItems(jsonData.data);
-    storeVariables.globalWardrobe = items;
+    // storeVariables.globalWardrobe = items;
   };
 
   // create new wardrobe item
@@ -97,7 +96,6 @@ export default function Wardrobe({ key }) {
         )
       );
     }
-
     return;
   };
 
@@ -160,8 +158,8 @@ export default function Wardrobe({ key }) {
                 <Box
                   id={item._id}
                   url={item.url}
-                  key={i}
-                  index={i}
+                  key={"box_key_" + item._id}
+                  index={"boxed_image_key" + item._id}
                   clickHandler={handleDeleteItem(item._id)}
                 />
               );

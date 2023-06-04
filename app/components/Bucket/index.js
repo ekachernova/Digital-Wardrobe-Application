@@ -3,15 +3,12 @@ import { useDrop } from "react-dnd";
 import styles from "../../styles.module.css";
 import { useSnapshot } from "valtio";
 import { storeVariables } from "@/store/storeVariables";
-//test HTML@CANVAS
-import { useEffect, useRef } from "react";
-import html2canvas from "html2canvas";
-// end
+import { useEffect } from "react";
 
 export default function Bucket({ id }) {
   const globalBucket = storeVariables.globalBucket;
   const globalBucketSnapshot = useSnapshot(globalBucket);
-  console.log("global bucket", globalBucket);
+
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: "Box",
     drop: (item) => addItemToTheBucket(item),
@@ -31,7 +28,7 @@ export default function Bucket({ id }) {
   };
 
   const addItemToTheBucket = (item) => {
-    console.log("Im here" + item.id);
+    console.log("Im here " + item.id);
     updateBucketItem(item.id);
     // globalBucket.push({ id: item.id });
   };
@@ -72,33 +69,32 @@ export default function Bucket({ id }) {
   }, []);
 
   //test HTML2 lib
-  const printRef = useRef();
+  // const printRef = useRef();
 
-  const handleDownloadImage = async () => {
-    const element = printRef.current;
-    const canvas = await html2canvas(element);
+  // const handleDownloadImage = async () => {
+  //   const element = printRef.current;
+  //   const canvas = await html2canvas(element);
 
-    const data = canvas.toDataURL("image/jpg");
-    const link = document.createElement("a");
+  //   const data = canvas.toDataURL("image/jpg");
+  //   const link = document.createElement("a");
 
-    if (typeof link.download === "string") {
-      link.href = data;
-      link.download = "image.jpg";
+  //   if (typeof link.download === "string") {
+  //     link.href = data;
+  //     link.download = "image.jpg";
 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      window.open(data);
-    }
-  };
-  //end test HTML2 lib
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   } else {
+  //     window.open(data);
+  //   }
+  // };
 
   return (
     <div ref={drop} role={"Dustbin"} className={styles.outfitSection} id={id}>
       {globalBucketSnapshot.map((item) => (
         // ref added for testin HTML2CANVAS - still not working!!! should be deleted if it will not be solved
-        <div key={item._id} ref={printRef}>
+        <div key={item._id}>
           <img src={item.url} width={140} height={160} />
         </div>
       ))}
