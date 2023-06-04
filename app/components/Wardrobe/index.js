@@ -6,14 +6,11 @@ import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Box from "../Box";
 import Weather from "../Weather";
-// import Outfits from "../Outfits";
 import Bucket from "../Bucket";
 
-export default function Wardrobe() {
+export default function Wardrobe({ key }) {
   const { globalWeather } = useSnapshot(storeVariables);
-  const { globalWardrobe } = useSnapshot(storeVariables);
-  console.log("global weather", globalWeather);
-  console.log("global wardrobe", globalWardrobe);
+  // console.log("global weather", globalWeather);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,7 +24,7 @@ export default function Wardrobe() {
       url: event.target.url.value,
     };
 
-    console.log(data);
+    // console.log(data);
     // Send data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
 
@@ -70,7 +67,6 @@ export default function Wardrobe() {
   const { id } = router.query;
 
   function handleDeleteItem(id) {
-    console.log(`wrapper for delete image handler with id: ${id}`);
     return async () => {
       console.log(`handler with id: ${id}`);
       await fetch(`/api/items/${id}`, {
@@ -175,7 +171,8 @@ export default function Wardrobe() {
             {items.map((item, i) => {
               return (
                 <Box
-                  key={item.id}
+                  key={item._id}
+                  id={item._id}
                   clickHandler={handleDeleteItem(item._id)}
                   url={item.url}
                   index={i}
@@ -185,7 +182,7 @@ export default function Wardrobe() {
           </div>
         </div>
         {/* <Outfits /> */}
-        <Bucket id={id} />
+        <Bucket key={key} />
       </div>
     </div>
   );
