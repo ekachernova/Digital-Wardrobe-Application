@@ -179,7 +179,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gainsboro;
   width: 100%;
   /*height will be changed in order to add the new items
   */
@@ -233,6 +232,7 @@
 
 .wardrobeSection {
   height: fit-content;
+  min-height: 500px;
   display: flex;
   flex-wrap: wrap;
   background-color: whitesmoke;
@@ -250,29 +250,37 @@
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-/* .outfitsWrapper {
+.outfitSection {
   display: flex;
-  gap: 20px;
-  margin-top: 40px;
-} */
-
-/* .draggbleWardrobe {
-  display: flex;
-  width: 50%;
-  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /*height will be changed in order to add the new items
+  */
+  height: 400px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  padding: 40px;
-  border-radius: 8px;
-} */
-
-/* .outfitsSection {
-  display: flex;
+}
+.outfitSection {
   height: fit-content;
-  border: none;
-  margin-top: 40px;
-  width: 100%;
-} */
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
+  /* background-image: url("https://images.unsplash.com/photo-1527519124254-9dafd8b3533b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"); */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border-radius: 8px;
+  gap: 20px;
+  padding: 80px;
+}
+
+.outfitSection img {
+  border-radius: 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px; */
+}
 
 @media (max-width: 700px) {
   .createWardrobeWrapper {

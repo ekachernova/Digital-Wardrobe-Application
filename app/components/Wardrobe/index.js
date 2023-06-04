@@ -6,17 +6,11 @@ import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Box from "../Box";
 import Weather from "../Weather";
-// import Outfits from "../Outfits";
 import Bucket from "../Bucket";
 
 export default function Wardrobe({ key }) {
   const { globalWeather } = useSnapshot(storeVariables);
-  const { globalBucket } = useSnapshot(storeVariables);
-
-  console.log("global weather", globalWeather);
-  // console.log("global wardrobe", globalWardrobe);
-
-  const { bucket, setBucket } = useState([]);
+  // console.log("global weather", globalWeather);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,7 +24,7 @@ export default function Wardrobe({ key }) {
       url: event.target.url.value,
     };
 
-    console.log(data);
+    // console.log(data);
     // Send data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
 

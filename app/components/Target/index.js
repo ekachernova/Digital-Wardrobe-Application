@@ -44,7 +44,7 @@ export default function Target({ ids }) {
         {items.map((id) => {
           return (
             <Box
-              key={1}
+              key={id}
               id={id}
               handler={handler}
               url={url}

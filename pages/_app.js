@@ -16,9 +16,9 @@ const Layout = ({ children }) => {
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <SessionProvider>
-        <Component {...pageProps} />
-      </SessionProvider>
+      {/* <SessionProvider> */}
+      <Component {...pageProps} />
+      {/* </SessionProvider> */}
     </Layout>
   );
 }

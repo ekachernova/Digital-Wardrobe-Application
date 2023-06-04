@@ -38,6 +38,15 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const filter = req.query.filter;
+    const ids = req.query?.ids?.split(",");
+
+    if (ids) {
+      const items = await ClothingItem.find({
+        // _id: { $in: ids.map((id) => mongoose.Types.ObjectId(id)) },
+        _id: { $in: ids },
+      });
+      return res.status(201).json({ success: true, data: items });
+    }
 
     try {
       const items = await ClothingItem.find().skip(0).limit(50);
