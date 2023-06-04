@@ -54,6 +54,29 @@
   margin-left: 50px;
 }
 
+.howItWorksBlockWrapper {
+  margin-top: 60px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-content: center;
+}
+.howItWorksBlock {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: fuchsia;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  padding: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
 .button {
   width: 200px;
   height: 200px;
