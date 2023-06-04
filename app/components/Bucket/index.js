@@ -1,5 +1,4 @@
 import { useDrop } from "react-dnd";
-// import Target from "../Target";
 import styles from "../../styles.module.css";
 import { useSnapshot } from "valtio";
 import { storeVariables } from "@/store/storeVariables";
@@ -45,11 +44,8 @@ export default function Bucket({ id }) {
       body: JSON.stringify(idMap),
     };
 
-    // API endpoint where we send data.
-    const endpoint = "/api/outfits";
-
     // store items in API
-    const response = await fetch(endpoint, options);
+    const response = await fetch("/api/outfits", options);
   };
 
   useEffect(() => {
@@ -68,41 +64,13 @@ export default function Bucket({ id }) {
     // getOutfit();
   }, []);
 
-  //test HTML2 lib
-  // const printRef = useRef();
-
-  // const handleDownloadImage = async () => {
-  //   const element = printRef.current;
-  //   const canvas = await html2canvas(element);
-
-  //   const data = canvas.toDataURL("image/jpg");
-  //   const link = document.createElement("a");
-
-  //   if (typeof link.download === "string") {
-  //     link.href = data;
-  //     link.download = "image.jpg";
-
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   } else {
-  //     window.open(data);
-  //   }
-  // };
-
   return (
     <div ref={drop} role={"Dustbin"} className={styles.outfitSection} id={id}>
       {globalBucketSnapshot.map((item) => (
-        // ref added for testin HTML2CANVAS - still not working!!! should be deleted if it will not be solved
         <div key={item._id}>
           <img src={item.url} width={140} height={160} />
         </div>
       ))}
-      {/*       
-      <button type="button" onClick={handleDownloadImage}>
-        Download as Image
-      </button> */}
-
       <button onClick={handleSaveOutfit}>Save outfit</button>
     </div>
   );
