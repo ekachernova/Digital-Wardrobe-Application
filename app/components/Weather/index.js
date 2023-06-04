@@ -9,8 +9,6 @@ export default function Weather() {
 
   const actualWeather = useSnapshot(storeVariables);
 
-  console.log(actualWeather);
-
   useEffect(() => {
     async function weatherFetch() {
       const response = await fetch(
@@ -18,9 +16,9 @@ export default function Weather() {
       );
 
       const weather = await response.json();
+
       setWeather(weather);
       storeVariables.globalWeather = weather;
-      console.log(weather);
     }
     weatherFetch();
   }, []);
