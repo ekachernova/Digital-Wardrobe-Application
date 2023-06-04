@@ -10,8 +10,8 @@ import Bucket from "../Bucket";
 
 export default function Wardrobe({ key }) {
   const { globalWeather } = useSnapshot(storeVariables);
-  // console.log("global weather", globalWeather);
 
+  // create new wardrobe item
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -24,8 +24,6 @@ export default function Wardrobe({ key }) {
       url: event.target.url.value,
     };
 
-    // console.log(data);
-    // Send data to the server in JSON format.
     const JSONdata = JSON.stringify(data);
 
     const options = {
@@ -36,25 +34,19 @@ export default function Wardrobe({ key }) {
       body: JSONdata,
     };
 
-    // API endpoint where we send form data.
-    const endpoint = "/api/items";
+    const response = await fetch("/api/items", options);
 
-    // store items in API
-    const response = await fetch(endpoint, options);
-
-    // Get the response data from server as JSON.
-    // If server returns the name submitted, that means the form works.
     const result = await response.json();
+
     syncItems();
   };
 
   const [items, setItems] = useState([{ title: "initial title" }]);
 
   const syncItems = async () => {
-    // console.log("fetcher is working");
     const response = await fetch("/api/items");
     const jsonData = await response.json();
-    // console.log(`items retrieved ${JSON.stringify(jsonData.data)}`);
+
     setItems(jsonData.data);
     storeVariables.globalWardrobe = items;
   };
@@ -62,9 +54,6 @@ export default function Wardrobe({ key }) {
   useEffect(() => {
     syncItems();
   }, []);
-
-  const router = useRouter();
-  const { id } = router.query;
 
   function handleDeleteItem(id) {
     return async () => {
@@ -78,7 +67,6 @@ export default function Wardrobe({ key }) {
   }
   function handelFilterButton(event) {
     if (globalWeather.current.temp_c >= 15) {
-      // console.log("filter is on");
       setItems((items) =>
         items.filter((item) => item.season === "all" || item.season === "warm")
       );
@@ -171,17 +159,16 @@ export default function Wardrobe({ key }) {
             {items.map((item, i) => {
               return (
                 <Box
-                  key={item._id}
                   id={item._id}
-                  clickHandler={handleDeleteItem(item._id)}
                   url={item.url}
+                  key={i}
                   index={i}
+                  clickHandler={handleDeleteItem(item._id)}
                 />
               );
             })}
           </div>
         </div>
-        {/* <Outfits /> */}
         <Bucket key={key} />
       </div>
     </div>
