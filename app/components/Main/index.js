@@ -9,7 +9,7 @@ export default function Main() {
       <section className={styles.mainDisclaimer}>
         <Image
           className={styles.mainImage}
-          src="/../public/images/alexandra-gorn-WF0LSThlRmw-unsplash (1).jpg"
+          src="/../public/images/main_image.jpg"
           alt="Wardrobe picture"
           width={500}
           height={400}
