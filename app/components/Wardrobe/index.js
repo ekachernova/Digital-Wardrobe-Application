@@ -1,6 +1,7 @@
+"use client";
+
 import styles from "../../styles.module.css";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Box from "../Box";

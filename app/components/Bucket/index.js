@@ -71,7 +71,7 @@ export default function Bucket({ id }) {
           <img src={item.url} width={140} height={160} />
         </div>
       ))}
-      <button onClick={handleSaveOutfit}>Save outfit</button>
+      {/* <button onClick={handleSaveOutfit}>Save outfit</button> */}
     </div>
   );
 }
