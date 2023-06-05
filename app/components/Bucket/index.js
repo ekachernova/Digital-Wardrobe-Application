@@ -1,3 +1,5 @@
+"use client";
+
 import { useDrop } from "react-dnd";
 import styles from "../../styles.module.css";
 import { useSnapshot } from "valtio";
