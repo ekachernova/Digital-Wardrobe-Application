@@ -70,7 +70,7 @@ export default function Bucket({ id }) {
     <div ref={drop} role={"Dustbin"} className={styles.outfitSection} id={id}>
       {globalBucketSnapshot.map((item) => (
         <div key={item._id}>
-          <img src={item.url} width={140} height={160} />
+          <img src={item.url} width={140} height={160} alt={item.name} />
         </div>
       ))}
       {/* <button onClick={handleSaveOutfit}>Save outfit</button> */}

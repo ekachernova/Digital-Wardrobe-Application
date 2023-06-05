@@ -10,8 +10,10 @@ import Bucket from "../Bucket";
 
 export default function Wardrobe({ key }) {
   const { globalWeather } = useSnapshot(storeVariables);
-
   const [items, setItems] = useState([{ title: "initial title" }]);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const { globalWardrobeSnap } = useSnapshot(storeVariables);
+  const { globalWardrobe } = storeVariables;
 
   useEffect(() => {
     syncItems();
@@ -22,7 +24,7 @@ export default function Wardrobe({ key }) {
     const jsonData = await response.json();
 
     setItems(jsonData.data);
-    // storeVariables.globalWardrobe = items;
+    storeVariables.globalWardrobe = jsonData.data;
   };
 
   // create new wardrobe item
@@ -63,40 +65,54 @@ export default function Wardrobe({ key }) {
       });
       // can be a call to syncItems() instead
       setItems((items) => items.filter((i) => i._id != id));
+      let index = globalWardrobe.findIndex((i) => i._id === id);
+      delete globalWardrobe[index];
     };
   };
 
   const handleFilterButton = (event) => {
-    if (globalWeather.current.temp_c >= 15) {
-      setItems((items) =>
-        items.filter((item) => item.season === "all" || item.season === "warm")
-      );
+    if (isFiltered) {
+      setIsFiltered(false);
+      setItems(globalWardrobe);
     }
-    if (
-      globalWeather.current.temp_c >= 15 &&
-      globalWeather.current.condition.code >= 1063
-    ) {
-      setItems((items) =>
-        items.filter(
-          (item) => item.season === "all" || item.season === "warm-rainy"
-        )
-      );
+    if (!isFiltered) {
+      setIsFiltered(true);
+      if (globalWeather.current.temp_c >= 15) {
+        setItems((items) =>
+          items.filter(
+            (item) => item.season === "all" || item.season === "warm"
+          )
+        );
+      }
+      if (
+        globalWeather.current.temp_c >= 15 &&
+        globalWeather.current.condition.code >= 1063
+      ) {
+        setItems((items) =>
+          items.filter(
+            (item) => item.season === "all" || item.season === "warm-rainy"
+          )
+        );
+      }
+      if (globalWeather.current.temp_c < 15) {
+        setItems((items) =>
+          items.filter(
+            (item) => item.season === "all" || item.season === "cold"
+          )
+        );
+      }
+      if (
+        globalWeather.current.temp_c < 15 &&
+        globalWeather.current.condition.code >= 1063
+      ) {
+        setItems((items) =>
+          items.filter(
+            (item) => item.season === "all" || item.season === "cold-rainy"
+          )
+        );
+      }
     }
-    if (globalWeather.current.temp_c < 15) {
-      setItems((items) =>
-        items.filter((item) => item.season === "all" || item.season === "cold")
-      );
-    }
-    if (
-      globalWeather.current.temp_c < 15 &&
-      globalWeather.current.condition.code >= 1063
-    ) {
-      setItems((items) =>
-        items.filter(
-          (item) => item.season === "all" || item.season === "cold-rainy"
-        )
-      );
-    }
+
     return;
   };
 
@@ -147,7 +163,12 @@ export default function Wardrobe({ key }) {
         </div>
       </div>
       <div>
-        <button className={styles.filterButton} onClick={handleFilterButton}>
+        <button
+          className={
+            isFiltered ? styles.filterButtonInactive : styles.filterButton
+          }
+          onClick={handleFilterButton}
+        >
           Sync your wardrobe!
         </button>
       </div>
