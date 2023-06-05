@@ -42,10 +42,9 @@ export default async function handler(req, res) {
 
     if (ids) {
       const items = await ClothingItem.find({
-        // _id: { $in: ids.map((id) => mongoose.Types.ObjectId(id)) },
         _id: { $in: ids },
       });
-      return res.status(201).json({ success: true, data: items });
+      return res.status(200).json({ success: true, data: items });
     }
 
     try {

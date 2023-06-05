@@ -11,12 +11,15 @@ export default function Weather() {
 
   useEffect(() => {
     async function weatherFetch() {
-      const response = await fetch(
-        "http://api.weatherapi.com/v1/current.json?key=1f37f1e7fbfc4a2d9f8115546232605&q=Berlin&aqi=no"
-      );
-
-      const weather = await response.json();
-      storeVariables.globalWeather = weather;
+      try {
+        const response = await fetch(
+          "https://api.weatherapi.com/v1/current.json?key=1f37f1e7fbfc4a2d9f8115546232605&q=Berlin&aqi=no"
+        );
+        const weather = await response.json();
+        storeVariables.globalWeather = weather;
+      } catch (e) {
+        console.log(e);
+      }
     }
     weatherFetch();
   }, []);
