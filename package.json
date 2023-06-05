@@ -22,5 +22,8 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
     "valtio": "^1.10.5"
+  },
+  "engines": {
+    "node": "18"
   }
 }
