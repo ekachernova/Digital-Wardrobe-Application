@@ -6,13 +6,21 @@ export default function Main() {
   return (
     <main className={styles.main}>
       <section className={styles.mainDisclaimer}>
-        <Image
-          className={styles.mainImage}
-          src="/images/main_image.jpg"
-          alt="Wardrobe picture"
-          width={500}
-          height={400}
-        />
+        <div className={styles.mainText}>
+          <p>
+            Do you know that your wardrobe is your constructor? Well, you are in
+            the right place!
+          </p>
+        </div>
+        <div>
+          <Image
+            className={styles.mainImage}
+            src="/images/amanda-vick-ohWf6YuzOQk-unsplash.jpg"
+            alt="Wardrobe picture"
+            width={500}
+            height={500}
+          />
+        </div>
         <div className={styles.mainButtonContainer}>
           <CreateButton />
         </div>
