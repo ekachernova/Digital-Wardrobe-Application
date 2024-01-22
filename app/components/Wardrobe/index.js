@@ -6,13 +6,12 @@ import { storeVariables } from "@/store/storeVariables";
 import { useSnapshot } from "valtio";
 import Box from "../Box";
 import Weather from "../Weather";
-import Bucket from "../Bucket";
+import Outfits from "../Outfits";
 
 export default function Wardrobe({ key }) {
   const { globalWeather } = useSnapshot(storeVariables);
   const [items, setItems] = useState([{ title: "initial title" }]);
   const [isFiltered, setIsFiltered] = useState(false);
-  const { globalWardrobeSnap } = useSnapshot(storeVariables);
   const { globalWardrobe } = storeVariables;
 
   useEffect(() => {
@@ -121,45 +120,62 @@ export default function Wardrobe({ key }) {
       <div className={styles.formContainer}>
         <Weather />
         <div className={styles.form}>
-          <h3>Add your clothes to the wardrobe</h3>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="title">Title</label>
+          <div className={styles.howItWorksFormComment}>
+            <h3>How it works</h3>
+            <p>
+              <strong>Step 1:</strong> Find something cool on the marketplace
+            </p>
+            <p>
+              <strong>Step 2:</strong> Add your garment to your wardrobe by copy
+              and paste the image URL
+            </p>
+            <p>
+              <strong>Step 3:</strong> Create outfits in the outfits section
+              below (please scroll the page down 😊)! Just drag and drop the
+              items from the left section to the right section. Enjoy!
+            </p>
+          </div>
+          <div>
+            <h3>Choose and add your clothes</h3>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="title">Title</label>
+                <br></br>
+                <input type="text" id="title" name="title" required />
+              </div>
+              <div>
+                <label htmlFor="category">Category</label>
+                <br></br>
+                <input type="text" id="category" name="category" required />
+              </div>
+              <div>
+                <label htmlFor="colour">Colour</label>
+                <br></br>
+                <input type="text" id="colour" name="colour" required />
+              </div>
+              <div>
+                <label htmlFor="season">Season</label>
+                <br></br>
+                {/* <input type="text" id="season" name="season" required /> */}
+                <select name="season" id="season" required>
+                  <option value="warm">warm</option>
+                  <option value="cold">cold</option>
+                  <option value="cold-rainy">cold rainy</option>
+                  <option value="warm-rainy">warm rainy </option>
+                  <option value="all">all </option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="url">URL</label>
+                <br></br>
+                <input type="text" id="url" name="url" required />
+              </div>
               <br></br>
-              <input type="text" id="title" name="title" required />
-            </div>
-            <div>
-              <label htmlFor="category">Category</label>
-              <br></br>
-              <input type="text" id="category" name="category" required />
-            </div>
-            <div>
-              <label htmlFor="colour">Colour</label>
-              <br></br>
-              <input type="text" id="colour" name="colour" required />
-            </div>
-            <div>
-              <label htmlFor="season">Season</label>
-              <br></br>
-              {/* <input type="text" id="season" name="season" required /> */}
-              <select name="season" id="season" required>
-                <option value="warm">warm</option>
-                <option value="cold">cold</option>
-                <option value="cold-rainy">cold rainy</option>
-                <option value="warm-rainy">warm rainy </option>
-                <option value="all">all </option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="url">URL</label>
-              <br></br>
-              <input type="text" id="url" name="url" required />
-            </div>
-            <br></br>
-            <button className={styles.addItemButton} type="submit">
-              Submit
-            </button>
-          </form>
+              <button className={styles.addItemButton} type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div>
@@ -173,22 +189,20 @@ export default function Wardrobe({ key }) {
         </button>
       </div>
       <div className={styles.wardrobeAndOutfitsWrapper}>
-        <div className={styles.createWardrobeWrapper}>
-          <div className={styles.wardrobeSection}>
-            {items.map((item, i) => {
-              return (
-                <Box
-                  id={item._id}
-                  url={item.url}
-                  key={"box_key_" + item._id}
-                  index={"boxed_image_key" + item._id}
-                  clickHandler={handleDeleteItem(item._id)}
-                />
-              );
-            })}
-          </div>
+        <div className={styles.wardrobeSection}>
+          {items.map((item, i) => {
+            return (
+              <Box
+                id={item._id}
+                url={item.url}
+                key={"box_key_" + item._id}
+                index={"boxed_image_key" + item._id}
+                clickHandler={handleDeleteItem(item._id)}
+              />
+            );
+          })}
         </div>
-        <Bucket key={key} />
+        <Outfits key={key} />
       </div>
     </div>
   );
