@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Digital-Wardrobe Application (Playground for creating outfits)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+I developed this project during my graduation from Spiced Academy Berlin. It was my first experience with full-stack development, from ideation to presentation at Demo Day. The platform allows users to play with outfits using separate clothing items.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Background
 
-## Learn More
+The project was an amazing experience that honed various skills, including researching ideas, choosing technologies, collaborating with peers and teachers, and implementing challenging features. The motivation behind this application stemmed from my personal creativity and passion for fashion, making everyday outfits enjoyable.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Status
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is currently being updated. Some features may not work correctly, but stay tuned for improvements!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Your ideas for new features or any recommendations are highly welcome!
 
-## Deploy on Vercel
+## Collaboration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you're interested in collaborating, please reach out to me either here or on 
+https://www.linkedin.com/in/ekaterina-chernova-67003537/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+
+- Next.js
+- React
+- JavaScript
+- MongoDb
+- Drag and Drop
+
+
+
+## Deploiment
+
+Here is the link on vercel: https://digital-wardrobe-application.vercel.app/createwardrobe
+
+Feel free to explore the project, and I'm open to any suggestions or collaborations!
+
+
+
+
